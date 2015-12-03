@@ -1,30 +1,22 @@
 <?script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"?>
-<zk  xmlns:n="native" xmlns:ca="client/attribute" >
-<script type="text/javascript" src="todo-zk.js"></script>
-  <n:head>
-    <!-- 
 <?script type="text/javascript" src="todo-zk.js"?>
-    <n:script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"/>
-    <n:script src="todo-zk.js"/> 
-    -->
-    <n:link rel="stylesheet" href="todo.css"/>
-  </n:head>
+<zk xmlns:n="native" xmlns:ca="client/attribute" >
     Todo
-	    <div id="content" viewModel="@id('vm') @init('org.zkoss.zkangular.TodoVM')" ca:ng-app="todoApp">
-		    <n:div ng-controller="TodoListController as todoList">
-		      {{todoList.remaining()}} of {{todoList.todos.length}} remaining
-		      [ <n:a href="" ng-click="todoList.archive()">archive</n:a> ]
-		      <n:ul class="unstyled">
-		        <n:li ng-repeat="todo in todoList.todos">
-		          <n:input type="checkbox" ng-model="todo.done"/>
-		          <n:span class="done-{{todo.done}}">{{todo.text}}</n:span>
-		        </n:li>
-		      </n:ul>
-		      <n:form ng-submit="todoList.addTodo()">
-		        <n:input type="text" ng-model="todoList.todoText"  size="30"
-		               placeholder="add new todo here"/>
-		        <n:input class="btn-primary" type="submit" value="add"/>
-		      </n:form>
-		    </n:div>
-	    </div>
+    <div id="content" viewModel="@id('vm') @init('org.zkoss.zkangular.TodoVM')" ca:ng-app="todoApp">
+	    <n:div ng-controller="TodoListController as todoList">
+	      {{todoList.remaining()}} of {{todoList.todos.length}} remaining
+	      [ <n:a href="" ng-click="todoList.archive()">archive</n:a> ]
+	      <n:ul class="unstyled">
+	        <n:li ng-repeat="todo in todoList.todos">
+	          <n:input type="checkbox" ng-model="todo.done"/>
+	          <n:span class="done-{{todo.done}}">{{todo.text}}</n:span>
+	        </n:li>
+	      </n:ul>
+	      <n:form ng-submit="todoList.addTodo()">
+	        <n:input type="text" ng-model="todoList.todoText"  size="30"
+	               placeholder="add new todo here"/>
+	        <n:input class="btn-primary" type="submit" value="add"/>
+	      </n:form>
+	    </n:div>
+    </div>
 </zk>
