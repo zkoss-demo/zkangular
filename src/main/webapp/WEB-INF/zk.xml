@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk>
+	<client-config>
+		<debug-js>true</debug-js>
+	</client-config>	
+	<!-- [Optional]
+	Uncomment if you want to defines the application's name 
+	
+	<preference>
+		<name>org.zkoss.zk.ui.WebApp.name</name>
+		<value>zkangular</value>
+	</preference>
+	-->
+	
+</zk>
