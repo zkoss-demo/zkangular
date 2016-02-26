@@ -4,7 +4,7 @@ angular.module('todoApp', [])
 	todoList.todos = [{text:'learn angular', done:true},
 	                  {text:'build an angular app', done:false}];
 
-	//communicat with ZK VM
+	//communicate with ZK VM
 	var binder = zkbind.$($element);
   	binder.after('doUpdate', function (updatedTodoList) {
   		$scope.$apply(function() {
