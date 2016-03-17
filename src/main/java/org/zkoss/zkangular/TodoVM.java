@@ -12,7 +12,7 @@ import org.zkoss.bind.annotation.ToServerCommand;
 
 @NotifyCommand(value="doUpdate", onChange="_vm_.todoList")
 @ToClientCommand({"doUpdate"})
-@ToServerCommand({"addTodo"})
+@ToServerCommand({"addTodo", "updateStatus"})
 public class TodoVM {
 
 	private ArrayList<Todo> todoList = new ArrayList<Todo>();
@@ -23,11 +23,22 @@ public class TodoVM {
 	}
 	
 	@Command
-	@NotifyChange("todoList")
 	public void addTodo(@BindingParam("text") String text){
-		Todo to = new Todo(text);
-		todoList.add(to);
+		//TODO pass a Todo object
+		Todo todo = new Todo(text);
+		todoList.add(todo);
 	}
+	
+	/**
+	 * update a todo's done status.
+	 * @param todo
+	 */
+	@Command
+	public void updateStatus(@BindingParam("index") int index, @BindingParam("done") boolean done){
+		todoList.get(index).setDone(done);
+	}
+	
+	//TODO archive todo
 	
 	public ArrayList<Todo> getTodoList() {
 		return todoList;

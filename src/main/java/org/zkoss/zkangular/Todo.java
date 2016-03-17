@@ -2,12 +2,24 @@ package org.zkoss.zkangular;
 
 public class Todo {
 
-	private String text;
-	private boolean done;
+	private String text = "";
+	private boolean done = false;
+	
+	/**
+	 * the no argument constructor is required for converting JSON to a Todo object.
+	 */
+	public Todo(){
+
+	}
 
 	public Todo(String text) {
 		this.text = text;
 	}
+	
+//	public Todo(String text, boolean done) {
+//		this.text = text;
+//		this.done = done;
+//	}
 	
 	public String getText() {
 		return text;
