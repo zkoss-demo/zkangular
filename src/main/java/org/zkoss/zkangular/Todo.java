@@ -6,7 +6,7 @@ public class Todo {
 	private boolean done = false;
 	
 	/**
-	 * the no argument constructor is required for converting JSON to a Todo object.
+	 * the no-argument constructor is required for converting a JSON into a Todo object.
 	 */
 	public Todo(){
 
@@ -15,11 +15,6 @@ public class Todo {
 	public Todo(String text) {
 		this.text = text;
 	}
-	
-//	public Todo(String text, boolean done) {
-//		this.text = text;
-//		this.done = done;
-//	}
 	
 	public String getText() {
 		return text;

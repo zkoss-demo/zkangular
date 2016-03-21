@@ -1,6 +1,7 @@
 package org.zkoss.zkangular;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
@@ -10,9 +11,9 @@ import org.zkoss.bind.annotation.NotifyCommand;
 import org.zkoss.bind.annotation.ToClientCommand;
 import org.zkoss.bind.annotation.ToServerCommand;
 
-@NotifyCommand(value="doUpdate", onChange="_vm_.todoList")
-@ToClientCommand({"doUpdate"})
-@ToServerCommand({"addTodo", "updateStatus"})
+@NotifyCommand(value="updateTodo", onChange="_vm_.todoList")
+@ToClientCommand({"updateTodo"})
+@ToServerCommand({"addTodo", "updateStatus","archive"})
 public class TodoVM {
 
 	private ArrayList<Todo> todoList = new ArrayList<Todo>();
@@ -22,10 +23,12 @@ public class TodoVM {
 		todoList.add(new Todo("testing todo"));
 	}
 	
+	/**
+	 * ZK can automatically convert a JSON object into your domain object.
+	 * @param todo
+	 */
 	@Command
-	public void addTodo(@BindingParam("text") String text){
-		//TODO pass a Todo object
-		Todo todo = new Todo(text);
+	public void addTodo(@BindingParam("todo") Todo todo){
 		todoList.add(todo);
 	}
 	
@@ -37,9 +40,21 @@ public class TodoVM {
 	public void updateStatus(@BindingParam("index") int index, @BindingParam("done") boolean done){
 		todoList.get(index).setDone(done);
 	}
-	
-	//TODO archive todo
-	
+
+	/**
+	 * Drop those "done" todo.
+	 */
+	@Command
+	public void archive(){
+		Iterator<Todo> iterator = todoList.iterator();
+		while (iterator.hasNext()){
+			Todo todo = iterator.next();
+			if (todo.isDone()){
+				iterator.remove();
+			}
+		}
+		return;
+	}	
 	public ArrayList<Todo> getTodoList() {
 		return todoList;
 	}

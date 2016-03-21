@@ -10,7 +10,7 @@ angular.module('todoApp', [])
 	//communicate with ZK VM
 	var binder = zkbind.$($element); //the binder is used to invoke a command, register a command callback
 	//register command "doUpdate" callback
-  	binder.after('doUpdate', function (updatedTodoList) {
+  	binder.after('updateTodo', function (updatedTodoList) {
   		$scope.$apply(function() {
   			$scope.todoList.todos = updatedTodoList;
   		});
@@ -25,7 +25,13 @@ angular.module('todoApp', [])
 		$scope.todoList.todos.push(newTodo);
 		$scope.todoList.todoText = '';
 		//send to ZK VM
-		binder.command('addTodo', newTodo);
+		/*
+		 * Angular adds $$hashKey in a newTodo to keep track of its changes, so it knows when it needs to update the DOM.
+		 * We can remove that hash key with angular.toJson(newTodo) before passing to the server-side.
+		 * Because $$hashKey will prevent ZK from converting newTodo (JSON) into its Java object (Todo) correctly.  
+		 * http://stackoverflow.com/questions/18826320/what-is-the-hashkey-added-to-my-json-stringify-result
+		 */
+		binder.command('addTodo', {todo:angular.toJson(newTodo)});
 	};
 
 	/**
@@ -54,5 +60,12 @@ angular.module('todoApp', [])
 				$scope.todoList.todos.push(todo);
 			}
 		});
+		binder.command('archive');
 	};
+	
+//  	binder.after('archive', function (updatedTodoList) {
+//  		$scope.$apply(function() {
+//  			$scope.todoList.todos = updatedTodoList;
+//  		});
+//  	});	
 });
