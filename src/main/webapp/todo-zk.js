@@ -9,7 +9,7 @@ angular.module('todoApp', [])
 
 	//communicate with ZK VM
 	var binder = zkbind.$($element); //the binder is used to invoke a command, register a command callback
-	//register command "doUpdate" callback
+	//register a command callback
   	binder.after('updateTodo', function (updatedTodoList) {
   		$scope.$apply(function() {
   			$scope.todoList.todos = updatedTodoList;
@@ -49,23 +49,12 @@ angular.module('todoApp', [])
 		//send to ZK VM
 		binder.command('updateStatus', {index:$scope.todoList.todos.indexOf(todo), done:todo.done});
 	};
+	
 	/**
 	 * archive (drop) those done todo items
 	 */
 	$scope.todoList.archive = function() {
-		var oldTodos = $scope.todoList.todos;
-		$scope.todoList.todos = [];
-		angular.forEach(oldTodos, function(todo) {
-			if (!todo.done){
-				$scope.todoList.todos.push(todo);
-			}
-		});
+		//archive todo list at the server side
 		binder.command('archive');
 	};
-	
-//  	binder.after('archive', function (updatedTodoList) {
-//  		$scope.$apply(function() {
-//  			$scope.todoList.todos = updatedTodoList;
-//  		});
-//  	});	
 });

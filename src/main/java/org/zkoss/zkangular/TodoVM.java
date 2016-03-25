@@ -20,7 +20,10 @@ public class TodoVM {
 
 	@Init
 	public void init() {
-		todoList.add(new Todo("testing todo"));
+		Todo todo = new Todo("learn ZK");
+		todo.setDone(true);
+		todoList.add(todo);
+		todoList.add(new Todo("build a ZK application"));
 	}
 	
 	/**
@@ -44,7 +47,7 @@ public class TodoVM {
 	/**
 	 * Drop those "done" todo.
 	 */
-	@Command
+	@Command @NotifyChange("todoList")
 	public void archive(){
 		Iterator<Todo> iterator = todoList.iterator();
 		while (iterator.hasNext()){
@@ -53,8 +56,8 @@ public class TodoVM {
 				iterator.remove();
 			}
 		}
-		return;
 	}	
+	
 	public ArrayList<Todo> getTodoList() {
 		return todoList;
 	}
