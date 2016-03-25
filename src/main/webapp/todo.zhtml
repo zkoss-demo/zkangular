@@ -1,4 +1,4 @@
-<html  xmlns="native" xmlns:z="zul"  xmlns:ca="client/attribute" ng-app="todoApp">
+<html xmlns="native" xmlns:z="zul"  xmlns:ca="client/attribute" ca:ng-app="todoApp">
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="todo-zk.js"></script>
@@ -6,7 +6,7 @@
   </head>
   <body>
     <h2>Todo</h2>
-	    <z:div id="content" viewModel="@id('vm') @init('org.zkoss.zkangular.TodoVM')" ca:ng-app="todoApp">
+	    <z:div id="content" viewModel="@id('vm') @init('org.zkoss.zkangular.TodoVM')" >
 		    <div ng-controller="TodoListController as todoList">
 		      <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
 		      [ <a href="" ng-click="todoList.archive()">archive</a> ]
