@@ -8,7 +8,7 @@ angular.module('todoApp', [])
 	$scope.todoList.todos = []; //data model
 
 	//communicate with ZK VM
-	var binder = zkbind.$($element); //the binder is used to invoke a command, register a command callback
+	var binder = zkbind.$('$content'); //the binder is used to invoke a command, register a command callback
 	//register a command callback
   	binder.after('updateTodo', function (updatedTodoList) {
   		$scope.$apply(function() {
