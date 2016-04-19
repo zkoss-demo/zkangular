@@ -1,7 +1,8 @@
-<?script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"?>
+<?script type="text/javascript" src="webjars/angularjs/1.4.8/angular.min.js"?>
 <?script type="text/javascript" src="todo-zk.js"?>
-<?link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"?>
-<?link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"?>
+<?link rel="stylesheet" href="webjars/bootstrap/3.3.6/dist/css/bootstrap.min.css"?>
+<?link rel="stylesheet" href="webjars/bootstrap/3.3.6/dist/css/bootstrap-theme.min.css"?>
+<?link rel="stylesheet" href="todo.css"?>
 <zk xmlns:n="native" xmlns:ca="client/attribute" >
     Todo
     <div id="content" viewModel="@id('vm') @init('org.zkoss.zkangular.TodoVM')" ca:ng-app="todoApp">
@@ -10,7 +11,7 @@
 	      [ <n:a href="" ng-click="todoList.archive()">archive</n:a> ]
 	      <n:ul class="unstyled">
 	        <n:li ng-repeat="todo in todoList.todos">
-	          <n:input type="checkbox" ng-model="todo.done"/>
+	          <n:input type="checkbox" ng-model="todo.done" ng-click="todoList.updateStatus(todo)"/>
 	          <n:span class="done-{{todo.done}}">{{todo.text}}</n:span>
 	        </n:li>
 	      </n:ul>
