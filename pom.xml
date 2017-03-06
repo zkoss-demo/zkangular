@@ -12,7 +12,7 @@
 	</properties>
 	<packaging>war</packaging>
 	<name>The zkangular Project</name>
-	<description>The zkangular Project</description>
+	<description>The zkangular Project. It's an example project to integrate Google Angular 1.</description>
 	<licenses>
 		<license>
 			<name>GNU LESSER GENERAL PUBLIC LICENSE, Version 3</name>
